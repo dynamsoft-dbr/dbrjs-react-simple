@@ -10,7 +10,10 @@ class ScannerUI extends React.Component {
         this.props.exportRef(this.elRef.current);
     }
     shouldComponentUpdate() {
-        // Never update UI after mount, dbrjs sdk use native way to bind event, update will remove it.
+        /*
+         * Never update UI after mount, the DBR JS SDK uses the native way to bind events, 
+         * updating UI will remove all event listners.
+         */
         return false;
     }
     render() {

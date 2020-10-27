@@ -7,19 +7,18 @@ class DBRJS extends React.Component {
         super(props);
         this.state = {
             bShowScanner: false,
-            buttonText: "Start",
+            buttonText: "Start Reading",
             barcodeText: ""
         }
         this.elRef = React.createRef();
     }
-    ;
     componentDidMount() {
         Dynamsoft.BarcodeScanner.loadWasm();
     }
     toggleShowScanner() {
         this.setState((state) => {
             let buttonText;
-            state.bShowScanner ? buttonText = "Start" : buttonText = "Cancel";
+            state.bShowScanner ? buttonText = "Start Reading" : buttonText = "Stop Reading";
             return {
                 bShowScanner: !state.bShowScanner,
                 buttonText: buttonText
@@ -34,7 +33,7 @@ class DBRJS extends React.Component {
             <>
                 <p style={{ height: "5vh", margin: "1vh auto" }}>
                     <button className="" style={{ width: "15vw", minWidth: "100px" }} onClick={() => { this.toggleShowScanner(); }} >{this.state.buttonText}</button>
-                    <input type="text" placeholder="Serial Number" style={{ width: "40vw" }} value={this.state.barcodeText} readOnly />
+                    <input type="text" placeholder="Result String" style={{ width: "40vw" }} value={this.state.barcodeText} readOnly />
                 </p>
                 {this.state.bShowScanner ? (
                     <BarcodeScanner
